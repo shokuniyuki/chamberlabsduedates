@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Date Calculator</title>
+    <script>
+      function calculateDate() {
+        // Get the date input from the user
+        const inputDate = document.getElementById("inputDate").value;
+        
+        // Convert input date string to a Date object
+        const date = new Date(inputDate);
+
+        // Calculate the date 45 days from the input date
+        const date45 = new Date(date.getTime() + (45 * 24 * 60 * 60 * 1000));
+
+        // Calculate the date 30 days from the date 45 days from the input date
+        const date30a = new Date(date45.getTime() + (30 * 24 * 60 * 60 * 1000));
+
+        // Calculate the date 30 days from the date 30 days from the date 45 days from the input date
+        const date30b = new Date(date30a.getTime() + (30 * 24 * 60 * 60 * 1000));
+
+        // Format the dates as strings
+        const dateString = date.toISOString().substring(0, 10);
+        const date45String = date45.toISOString().substring(0, 10);
+        const date30aString = date30a.toISOString().substring(0, 10);
+        const date30bString = date30b.toISOString().substring(0, 10);
+
+        // Output the results to the webpage
+        document.getElementById("output").innerHTML = `
+          Input date: ${dateString} <br>
+          45 days from input date: ${date45String} <br>
+          30 days from 45 days from input date: ${date30aString} <br>
+          30 days from ${date30aString}: ${date30bString} <br>
+        `;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Date Calculator</h1>
+    <label for="inputDate">Enter a date (YYYY-MM-DD format):</label>
+    <input type="text" id="inputDate">
+    <br><br>
+    <button onclick="calculateDate()">Calculate Dates</button>
+    <br><br>
+    <div id="output"></div>
+  </body>
+</html>
